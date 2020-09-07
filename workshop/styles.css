@@ -1,4 +1,5 @@
 * {
+  margin: 0;
   box-sizing: border-box;
 }
 
@@ -6,6 +7,8 @@ html {
   --border: hsl(200, 10%, 30%);
   --text: hsl(200, 10%, 25%);
   --bg: hsl(200, 10%, 98%);
+  --danger-bg: hsl(0, 75%, 80%);
+  --danger-fg: hsl(0, 75%, 25%);
 }
 
 body {
@@ -15,38 +18,13 @@ body {
   background-color: var(--bg);
 }
 
-button,
-input {
-  display: block;
-  border: 1px solid var(--border);
-  padding: 0.5rem;
+button {
+  border: 0;
   font: inherit;
   background: none;
-  color: inherit;
-}
-
-label {
-  display: block;
-  margin-top: 1rem;
+  padding: 0.5rem;
   font-weight: bold;
-}
-
-input {
-  width: 100%;
-  margin-top: 0.5rem;
-}
-
-button {
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  font-weight: bold;
-  background-color: var(--text);
-  color: var(--bg);
-}
-
-input::placeholder {
-  color: inherit;
-  opacity: 1;
+  vertical-align: middle;
 }
 
 ul {
@@ -55,9 +33,7 @@ ul {
 }
 
 img {
-  display: block;
-  width: 100%;
-  height: auto;
+  max-width: 100%;
   object-fit: cover;
 }
 
@@ -69,6 +45,12 @@ img {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   gap: 2rem;
+}
+
+.dog {
+  display: grid;
+  gap: 0.5rem;
+  align-content: start;
 }

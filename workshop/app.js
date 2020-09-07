@@ -1,28 +1,39 @@
 import h from "./create-element.js";
-import { getDogs } from "./api.js";
+import { getDogs, deleteDog } from "./api.js";
+
+const dogsGridEl = h("div", { className: "grid" });
+const dogsStatusEl = h("div", { "aria-live": "polite" });
+dogsGridEl.append(dogsStatusEl);
 
 // render the initial UI to the page
 const app = document.querySelector("#app");
-app.append(DogsList());
+app.append(dogsGridEl);
 
 getDogs().then((dogs) => {
-  app.innerHTML = "";
-  app.append(DogsList(dogs));
+  const dogEls = dogs.map(Dog);
+  dogsGridEl.append(...dogEls);
 });
 
-function DogsList(dogs) {
-  if (!dogs) return "";
-  // create an array of dog elements using the Dog function below
-  const dogEls = dogs.map(Dog);
-  return h("ul", { className: "grid" }, ...dogEls);
+// takes a dog object as its argument
+function Dog({ id, name, image }) {
+  return h(
+    "div",
+    { className: "dog" },
+    h("h3", {}, name, DeleteButton({ id, name })),
+    h("img", { src: image, alt: "", width: 400, height: 400 })
+  );
 }
 
-// takes a dog object as its argument
-function Dog({ name, image }) {
+function DeleteButton({ id, name }) {
   return h(
-    "li",
-    {},
-    h("h3", {}, name),
-    h("img", { src: image, alt: "", width: 400, height: 400 })
+    "button",
+    {
+      "aria-label": `Delete ${name}`,
+      onclick: (event) => {
+        const button = event.currentTarget;
+        deleteDog(id).then(() => button.parentElement.parentElement.remove());
+      },
+    },
+    h("img", { src: "trash.svg", width: 24, height: 24, alt: "" })
   );
 }

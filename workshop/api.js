@@ -2,6 +2,16 @@ export function getDogs() {
   return wait(3000).then(() => fakeDogs);
 }
 
+export function deleteDog() {
+  return wait(1000).then(() => {
+    if (Math.random() > 0.5) {
+      const error = new Error("HTTP Error");
+      error.status = 500;
+      throw error;
+    }
+  });
+}
+
 function wait(ms) {
   return new Promise((res) => setTimeout(res, ms));
 }
