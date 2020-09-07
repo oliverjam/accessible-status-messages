@@ -2,8 +2,6 @@ import h from "./create-element.js";
 import { getDogs, deleteDog } from "./api.js";
 
 const dogsGridEl = h("div", { className: "grid" });
-const dogsStatusEl = h("div", { "aria-live": "polite" });
-dogsGridEl.append(dogsStatusEl);
 
 // render the initial UI to the page
 const app = document.querySelector("#app");
