@@ -1,0 +1,102 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  --border: hsl(200, 10%, 30%);
+  --text: hsl(200, 10%, 25%);
+  --bg: hsl(200, 10%, 98%);
+  --danger-bg: hsl(0, 75%, 80%);
+  --danger-fg: hsl(0, 75%, 25%);
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--text);
+  background-color: var(--bg);
+}
+
+button {
+  border: 0;
+  font: inherit;
+  background: none;
+  padding: 0.5rem;
+  font-weight: bold;
+  vertical-align: middle;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+  object-fit: cover;
+}
+
+#app {
+  margin: 0 auto;
+  padding: 1.5rem;
+  padding: clamp(1.5rem, 1.5rem + 6vw, 8rem);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 2rem;
+}
+
+.dog {
+  display: grid;
+  gap: 0.5rem;
+  align-content: start;
+}
+
+.error {
+  font-size: 1rem;
+  color: var(--danger-fg);
+}
+
+.notify {
+  /* position it 2rem from the bottom of the viewport, centered */
+  position: fixed;
+  width: max-content;
+  bottom: 2rem;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+
+  /* vertically center warning icon + message */
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  /* make it pretty */
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 2px hsla(200, 10%, 20%, 0.4),
+    0 6px 16px -2px hsla(200, 10%, 20%, 0.4);
+  border-radius: 0.125rem;
+  background-color: var(--bg);
+
+  /* initially slide it down off screen */
+  transform: translateY(calc(100% + 2rem));
+  /* this animates any changes to the translate */
+  transition: transform 0.3s;
+}
+
+/* slide it up when the .active class is added */
+.notify.active {
+  transform: translateY(0);
+}
+
+/* Bonus: add a warning icon inside before the text content */
+.notify::before {
+  content: "";
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-image: url("warning.svg");
+}
