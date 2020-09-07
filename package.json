@@ -1,0 +1,17 @@
+{
+  "name": "accessible-status-messages",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "servor workshop --reload",
+    "solution": "servor solution --reload"
+  },
+  "keywords": [],
+  "author": "Oliver Phillips <hello@oliverjam.es> (https://oliverjam.es)",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^7.8.1",
+    "servor": "^4.0.2"
+  }
+}
